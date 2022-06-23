@@ -52,20 +52,30 @@ function ongame(){
 }
 
 id_button.addEventListener('click', () => {
-  if(rumble != ''){
-    if(id_answer.value == book){
+  sendAnswer()
+})
+
+id_answer.addEventListener('keyup', (event) => {
+  if(event.keyCode === 13){
+    sendAnswer()
+  }
+})
+
+function sendAnswer(){
+  if (rumble != '') {
+    if (id_answer.value == book) {
       score++
-    }else{
+    } else {
       score--
     }
-  }else{
+  } else {
     timer()
   }
   rumble = ''
   id_answer.value = ''
   id_score.textContent = 'Your current score: ' + score
   ongame()
-})
+}
 
 function timer(){
   if(time > 0){
@@ -91,3 +101,4 @@ function timer(){
 document.getElementById('hide').addEventListener('click', () => {
   document.getElementById('tutorial').style.display = 'none'
 })
+
